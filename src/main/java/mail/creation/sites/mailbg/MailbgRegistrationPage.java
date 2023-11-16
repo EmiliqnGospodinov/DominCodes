@@ -1,4 +1,4 @@
 package mail.creation.sites.mailbg;
 
-public class MainPage {
+public class MailbgRegistrationPage {
 }
