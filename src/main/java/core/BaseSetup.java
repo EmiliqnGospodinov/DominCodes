@@ -17,8 +17,8 @@ public class BaseSetup {
     /**
      * Start new Session
      */
-    public static void startBrowser(WebDriver driver) {
-        driver = new FirefoxDriver();
+    public static void startBrowser() {
+        BaseSetup.driver = new FirefoxDriver();
     }
 
     //Think about re-writing it later

@@ -1,18 +1,22 @@
 package base;
 
 import core.BaseSetup;
+import mail.creation.sites.abv.AbvHomePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import static core.BaseSetup.driver;
+
 public class TestsSetup{
-    //private WebDriver driver = new FirefoxDriver();
-    //protected RegistrationHomePage regSite = new RegistrationHomePage(driver);
+    //WebDriver driver = new FirefoxDriver();
+    //protected AbvHomePage regSite = new AbvHomePage(driver);
     //protected MainRegistrationPage regForm = new MainRegistrationPage(driver);
 
     @BeforeMethod
-    public void setUp(WebDriver driver){
-        BaseSetup.startBrowser(driver);
+    public void setUp(){
+        BaseSetup.startBrowser();
     }
 
     @AfterMethod

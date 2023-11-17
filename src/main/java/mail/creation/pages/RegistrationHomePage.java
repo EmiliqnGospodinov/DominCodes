@@ -1,5 +1,6 @@
 package mail.creation.pages;
 
+import core.BaseSetup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,9 +14,10 @@ import java.time.Duration;
 
 public class RegistrationHomePage {
 
+
     private WebDriver driver;
     public RegistrationHomePage(WebDriver driver){
-        this.driver = driver;
+        this.driver = BaseSetup.driver;
         PageFactory.initElements(driver, this);
     }
     //We can't use annotations for dynamic element locators

@@ -12,7 +12,6 @@ import java.time.Duration;
 import static core.BaseSetup.driver;
 
 public class CommonActions {
-    //da gi iznesa ot mainregpage i reghomepage
 
     /**
      * Open site

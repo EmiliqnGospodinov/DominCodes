@@ -1,19 +1,23 @@
 package mail.creation.tests;
 
 import base.TestsSetup;
+import core.BaseSetup;
 import mail.creation.sites.abv.AbvHomePage;
 import org.testng.annotations.Test;
 
 import static core.BaseSetup.driver;
 import static org.testng.Assert.assertEquals;
 
-public class RegistrationTests extends TestsSetup {
+public class AbvRegistrationTests extends TestsSetup {
+
+    AbvHomePage abvHomePage = new AbvHomePage(BaseSetup.driver);
+    //protected RegistrationHomePage regSite = new RegistrationHomePage(driver);
+    //protected MainRegistrationPage regForm = new MainRegistrationPage(driver);
 
     @Test
     public void abvRegistrationButtonTest(){
-        AbvHomePage abvHomePage = new AbvHomePage(driver);
-        AbvHomePage.openUrl();
-        AbvHomePage.acceptRules();
+        abvHomePage.openUrl();
+        abvHomePage.acceptRules();
     }
 
     //@Test
