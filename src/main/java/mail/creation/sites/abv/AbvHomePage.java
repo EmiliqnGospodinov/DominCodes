@@ -1,14 +1,15 @@
 package mail.creation.sites.abv;
 
-import core.CommonActions;
+import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AbvHomePage extends CommonActions {
+public class AbvHomePage extends BasePage {
 
     public AbvHomePage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver, this);
     }
     static String PAGE_URL = "https://www.abv.bg/";
@@ -50,16 +51,16 @@ public class AbvHomePage extends CommonActions {
     WebElement lastName;
 
 
-    public static void openUrl() {
+    public void openUrl() {
         open(PAGE_URL);
     }
 
-    public static void acceptRules() {
-        CommonActions.iframeAcceptRules(RULES_IFRAME, acceptRulesButton);
+    public void acceptRules() {
+        iframeAcceptRules(RULES_IFRAME, acceptRulesButton);
     }
 
 
-    public String getRegistrationButtonText() {
-        return registerButton.getText();
+    public WebElement getRegistrationButton() {
+        return registerButton;
     }
 }

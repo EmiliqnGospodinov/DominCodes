@@ -1,8 +1,7 @@
 package mail.creation.sites.abv;
 
-import core.CommonActions;
-import org.openqa.selenium.WebDriver;
+import core.BasePage;
 
-public class AbvRegistrationPage extends CommonActions {
+public class AbvRegistrationPage{
 
 }

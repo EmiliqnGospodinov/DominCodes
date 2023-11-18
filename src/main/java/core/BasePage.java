@@ -9,16 +9,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static core.BaseSetup.driver;
+public class BasePage {
 
-public class CommonActions {
+    protected WebDriver driver;
+
+    protected BasePage(WebDriver driver){
+        this.driver = driver;
+    }
 
     /**
      * Open site
      * @param url - path to the site
      */
-    public static void
-    open(String url){
+    public void open(String url){
         driver.get(url);
     }
 
@@ -27,17 +30,15 @@ public class CommonActions {
      * @param iframe - the iframe element
      * @param acceptRulesButton - the accept button element
      */
-public static void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
-        driver.switchTo().frame(iframe);
-
-        //wait for it to load
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(acceptRulesButton));
-        acceptRulesButton.click();
-
-        //switch back to main frame
-        driver.switchTo().defaultContent();
-    }
+     public void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
+         driver.switchTo().frame(iframe);
+         //wait for it to load
+         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+         wait.until(ExpectedConditions.elementToBeClickable(acceptRulesButton));
+         acceptRulesButton.click();
+         //switch back to main frame
+         driver.switchTo().defaultContent();
+     }
 
     protected static void typeInField(WebElement field, String input) {
         field.sendKeys(input);

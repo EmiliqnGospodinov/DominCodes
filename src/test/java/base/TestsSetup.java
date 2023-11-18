@@ -1,7 +1,5 @@
 package base;
 
-import core.BaseSetup;
-import mail.creation.sites.abv.AbvHomePage;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,35 +11,32 @@ import java.io.File;
 import java.io.IOException;
 
 import static com.google.common.io.Files.move;
-import static core.BaseSetup.driver;
 
 public class TestsSetup{
-    //public static WebDriver driver;
+    public static WebDriver driver;
 
     /**
      * Start new Session
      */
     @BeforeMethod
     public void setUp(){
-        //driver = new FirefoxDriver();
-        BaseSetup.startBrowser();
+        driver = new FirefoxDriver();
     }
 
     @AfterMethod
     public void recordFailure(ITestResult result){
 
-        //if(ITestResult.FAILURE == result.getStatus())
-        //{
-        //    //System.out.println("FAILNA");
-        //    var camera = (TakesScreenshot)driver;
-        //    File screenshot = camera.getScreenshotAs(OutputType.FILE);
-        //    try{
-        //        move(screenshot, new File("C:\\Users\\emili\\Desktop\\Dominhoes\\FailedTests\\" + result.getName() + ".png"));
-        //    }catch(IOException e){
-        //        e.printStackTrace();
-        //    }
-        //}
-        BaseSetup.record(result);
+        if(ITestResult.FAILURE == result.getStatus())
+        {
+            //System.out.println("FAILNA");
+            var camera = (TakesScreenshot)driver;
+            File screenshot = camera.getScreenshotAs(OutputType.FILE);
+            try{
+                move(screenshot, new File("C:\\Users\\emili\\Desktop\\Dominhoes\\FailedTests\\" + result.getName() + ".png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     @BeforeClass
@@ -51,7 +46,7 @@ public class TestsSetup{
 
     @AfterClass
     public void tearDown(){
-        BaseSetup.closeBrowser();
+        //driver.quit();
     }
 
 }

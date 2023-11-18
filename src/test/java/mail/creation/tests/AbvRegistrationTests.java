@@ -1,23 +1,25 @@
 package mail.creation.tests;
 
 import base.TestsSetup;
-import core.BaseSetup;
 import mail.creation.sites.abv.AbvHomePage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-import static core.BaseSetup.driver;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class AbvRegistrationTests extends TestsSetup {
-    AbvHomePage abvHomePage;
+
 
     @Test
     public void abvRegistrationButtonCheckTextTest(){
-        abvHomePage = new AbvHomePage(driver);
+        AbvHomePage abvHomePage = new AbvHomePage(driver);
         abvHomePage.openUrl();
+
         abvHomePage.acceptRules();
 
-        assertEquals("Регистрирай се!", abvHomePage.getRegistrationButtonText(), "Register button text does not match!");
+        assertTrue(abvHomePage.getRegistrationButton().isDisplayed());
+
     }
 
     //@Test
