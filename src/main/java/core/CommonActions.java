@@ -17,7 +17,8 @@ public class CommonActions {
      * Open site
      * @param url - path to the site
      */
-    public static void open(String url){
+    public static void
+    open(String url){
         driver.get(url);
     }
 
@@ -26,16 +27,19 @@ public class CommonActions {
      * @param iframe - the iframe element
      * @param acceptRulesButton - the accept button element
      */
-    public static void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
-            driver.switchTo().frame(iframe);
-            System.out.println(driver.getTitle());
+public static void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
+        driver.switchTo().frame(iframe);
 
-            //wait for it to load
-            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(acceptRulesButton));
-            acceptRulesButton.click();
+        //wait for it to load
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(acceptRulesButton));
+        acceptRulesButton.click();
 
-            //switch back to main frame
-            driver.switchTo().defaultContent();
-        }
+        //switch back to main frame
+        driver.switchTo().defaultContent();
+    }
+
+    protected static void typeInField(WebElement field, String input) {
+        field.sendKeys(input);
+    }
 }

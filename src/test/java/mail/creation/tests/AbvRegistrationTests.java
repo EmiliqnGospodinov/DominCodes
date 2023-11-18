@@ -9,15 +9,15 @@ import static core.BaseSetup.driver;
 import static org.testng.Assert.assertEquals;
 
 public class AbvRegistrationTests extends TestsSetup {
-
-    AbvHomePage abvHomePage = new AbvHomePage(BaseSetup.driver);
-    //protected RegistrationHomePage regSite = new RegistrationHomePage(driver);
-    //protected MainRegistrationPage regForm = new MainRegistrationPage(driver);
+    AbvHomePage abvHomePage;
 
     @Test
-    public void abvRegistrationButtonTest(){
+    public void abvRegistrationButtonCheckTextTest(){
+        abvHomePage = new AbvHomePage(driver);
         abvHomePage.openUrl();
         abvHomePage.acceptRules();
+
+        assertEquals("Регистрирай се!", abvHomePage.getRegistrationButtonText(), "Register button text does not match!");
     }
 
     //@Test

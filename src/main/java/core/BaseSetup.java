@@ -1,5 +1,7 @@
 package core;
 
+import mail.creation.sites.abv.AbvHomePage;
+import mail.creation.sites.abv.AbvRegistrationPage;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -12,13 +14,13 @@ import java.io.IOException;
 import static com.google.common.io.Files.move;
 
 public class BaseSetup {
-    public static WebDriver driver;
 
+    public static WebDriver driver;
     /**
      * Start new Session
      */
     public static void startBrowser() {
-        BaseSetup.driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
     }
 
     //Think about re-writing it later
