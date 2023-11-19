@@ -2,7 +2,9 @@ package mail.creation.tests;
 
 import base.TestsSetup;
 import mail.creation.sites.abv.AbvHomePage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import mail.creation.sites.abv.AbvRegistrationPage;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -10,11 +12,14 @@ import static org.testng.Assert.assertTrue;
 
 public class AbvRegistrationTests extends TestsSetup {
 
+    AbvHomePage abvHomePage;
+    AbvRegistrationPage abvRegPage;
+
 
     @Test
     public void abvRegistrationButtonCheckTextTest(){
-        AbvHomePage abvHomePage = new AbvHomePage(driver);
-        abvHomePage.openUrl();
+        abvHomePage = new AbvHomePage(driver);
+        abvHomePage.openPage();
 
         abvHomePage.acceptRules();
 
@@ -22,14 +27,21 @@ public class AbvRegistrationTests extends TestsSetup {
 
     }
 
-    //@Test
-    //public void abvRegButtonText(){
-//
-    //    regSite.openRegSite("https://www.abv.bg/");
-    //    regSite.acceptSiteRulesAndGoBackToDefaultContent();
-    //    assertEquals("Регистрирай се!", regSite.checkRegistrationButtonText());
-    //}
-//
+    @Test
+    public void abvCompleteRegistionTest(){
+        abvRegPage = new AbvRegistrationPage(driver);
+        abvRegPage.openPage();
+        //When opening the Registration Page directly there is no Rules pop-up??
+
+        abvRegPage.inputMail("kod4eta");
+        abvRegPage.inputSamePasswords("Test1234");
+        abvRegPage.inputPhone("888888888");//Fill phone num
+        abvRegPage.chooseSex(2);
+        abvRegPage.inputNames("Nice", "Name");
+        abvRegPage.inputBirthDate("5","Март","1953");
+    }
+
+
     //@Test
     //public void abvRegButtonClickTest(){
     //    regSite.openRegSite("https://www.abv.bg");
