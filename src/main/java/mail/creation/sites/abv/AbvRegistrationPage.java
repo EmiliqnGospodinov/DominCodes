@@ -2,16 +2,12 @@ package mail.creation.sites.abv;
 
 import core.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AbvRegistrationPage extends BasePage{
     static String PAGE_URL = "https://passport.abv.bg/app/profiles/registration";
@@ -35,8 +31,14 @@ public class AbvRegistrationPage extends BasePage{
     // = RelativeLocator.with(By.id("password2")).below(By.id("password"));
 
     @FindBy(id= "mobilePhone")
-    WebElement phone;
+    WebElement phoneNumber;
     //private By phone;// = By.cssSelector("input[id=\"mobilePhone\"]");
+
+    @FindBy(css = ".abv-phone>strong")
+    WebElement phoneCode;
+
+    @FindBy(css = ".abv-phone>ul>li")
+    List<WebElement> countriesList;
 
     @FindBy(id = "fname")
     WebElement fName;
@@ -44,6 +46,24 @@ public class AbvRegistrationPage extends BasePage{
 
     @FindBy(id = "lname")
     WebElement lName;
+
+    @FindBy(id = "bDay")
+    WebElement bDay;
+
+    //String text = driver.findElement(By.xpath("//li[.='"+option+"']")).getAttribute("textContent");
+    @FindBy(css = "#bDay>ul>li")
+    List<WebElement> bDayList;
+
+    @FindBy(id = "bMonth")
+    WebElement bMonth;
+
+    @FindBy(css = "#bMonth>ul>li")
+    List<WebElement> bMonthList;
+    @FindBy(id = "bYear")
+    WebElement bYear;
+
+    @FindBy(css = "#bYear>ul>li")
+    List<WebElement> bYearList;
 
     public void inputMail(String mail){
         mailField.sendKeys(mail);
@@ -66,20 +86,12 @@ public class AbvRegistrationPage extends BasePage{
         driver.get(PAGE_URL);
     }
 
-    @FindBy(id = "bDay")
-    WebElement bDay;
-
-    @FindBy(css = "#bDay>ul>li")
-    List<WebElement> bDayOptions;
-
-
-    @FindBy(id = "bMonth")
-    WebElement bMonth;
-    @FindBy(id = "bYear")
-    WebElement bYear;
+    public void choosePhoneCountry(String country){
+        selectDropdownOption(countriesList, phoneCode, country);
+    }
 
     public void inputPhone(String phoneNumber){
-        phone.sendKeys(phoneNumber);
+        this.phoneNumber.sendKeys(phoneNumber);
     }
 
     public void inputNames(String firstName, String lastName){
@@ -94,11 +106,9 @@ public class AbvRegistrationPage extends BasePage{
         driver.findElement(sex).click();
     }
 
-    //NEEDS REFACTORING
     public void inputBirthDate(String bDayOption, String bMonthOption, String bYearOption){
-        selectDropdownOption(bDay, bDayOption);
-        //String text = driver.findElement(By.xpath("//li[.='"+option+"']")).getAttribute("textContent");
-        selectDropdownOption(bMonth, bMonthOption);
-        selectDropdownOption(bYear, bYearOption);
+        selectDropdownOption(bDayList, bDay, bDayOption);
+        selectDropdownOption(bMonthList, bMonth, bMonthOption);
+        selectDropdownOption(bYearList, bYear, bYearOption);
     }
 }

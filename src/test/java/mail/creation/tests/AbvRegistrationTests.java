@@ -35,6 +35,7 @@ public class AbvRegistrationTests extends TestsSetup {
 
         abvRegPage.inputMail("kod4eta");
         abvRegPage.inputSamePasswords("Test1234");
+        abvRegPage.choosePhoneCountry("Австралия");
         abvRegPage.inputPhone("888888888");//Fill phone num
         abvRegPage.chooseSex(2);
         abvRegPage.inputNames("Nice", "Name");

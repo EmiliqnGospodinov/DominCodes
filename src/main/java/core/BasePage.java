@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
 
@@ -54,27 +55,15 @@ public class BasePage {
 
 
     //NEEDS REFACTORING
-    protected static void selectDropdownOption(WebElement menu, String option){
-            menu.click();
-            //needs Refactoring
-            //String text = driver.findElement(By.xpath("//li[.='"+option+"']")).getAttribute("textContent");
-            menu.findElement(By.xpath("//li[.='"+option+"']")).click();
-
-            //store and chose option
-            //WebElement menu = driver.findElement(By.xpath("//div[@id=\""+ul+"\"]"));
-            //WebElement menuOption = menu.findElement(By.xpath("//li[.='"+option+"']"));
-            //String textInMenu = menuOption.getText();
-            //menuOption.click();
-
-            //return result for assertion
-            //return textInMenu;
-
-             //List<WebElement> bDays = menu.findElements(By.tagName("li"));
-             //List<String> bDaysList = bDays.stream().map(WebElement::getText).collect(Collectors.toList());
-             //System.out.println(bDaysList);
-             //int intOption = Integer.parseInt(option);
-             //bDays.get(intOption).click();
-
-
+    protected static void selectDropdownOption(List<WebElement> list, WebElement menu, String option){
+        menu.click();
+        for (WebElement element: list
+        ) {
+            String textDay = element.getText();
+            if (textDay.contains(option)){
+                element.click();
+                return;
+            }
+        }
     }
 }
