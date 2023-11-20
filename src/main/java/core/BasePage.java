@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasePage {
 
@@ -54,16 +55,21 @@ public class BasePage {
     }
 
 
+
     //NEEDS REFACTORING
     protected static void selectDropdownOption(List<WebElement> list, WebElement menu, String option){
         menu.click();
-        for (WebElement element: list
-        ) {
-            String textDay = element.getText();
-            if (textDay.contains(option)){
-                element.click();
-                return;
-            }
-        }
+        WebElement correct = list.stream().
+         filter((element) -> element.getText().contains(option))
+                .findFirst().orElse(null);
+        correct.click();
+        //for (WebElement element: list
+        //) {
+        //    String textDay = element.getText();
+        //    if (textDay.contains(option)){
+        //        element.click();
+        //        return;
+        //    }
+        //}
     }
 }
