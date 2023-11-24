@@ -1,7 +1,6 @@
 package mail.creation.sites.abv;
 
 import core.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,6 +46,9 @@ public class AbvRegistrationPage extends BasePage{
     @FindBy(id = "lname")
     WebElement lName;
 
+    @FindBy(css = "div[class='abv-radio']>label")
+    List<WebElement> sexes;
+
     @FindBy(id = "bDay")
     WebElement bDay;
 
@@ -64,6 +66,9 @@ public class AbvRegistrationPage extends BasePage{
 
     @FindBy(css = "#bYear>ul>li")
     List<WebElement> bYearList;
+
+    @FindBy(css = "input[value='Напред']")
+    WebElement buttonNext;
 
     public void inputMail(String mail){
         mailField.sendKeys(mail);
@@ -99,16 +104,41 @@ public class AbvRegistrationPage extends BasePage{
         lName.sendKeys(lastName);
     }
 
-    //NEEDS REFACTORING
-    public void chooseSex(int i){
-        String xpathSex = "//label[@data-value=\"" + i + "\"]";
-        By sex = By.xpath(xpathSex);
-        driver.findElement(sex).click();
+
+    public void chooseSex(String sex){
+        WebElement chosenSex = sexes.stream().
+                filter((element) -> element.getText().contains(sex))
+                .findFirst().orElse(null);
+        chosenSex.click();
     }
 
     public void inputBirthDate(String bDayOption, String bMonthOption, String bYearOption){
         selectDropdownOption(bDayList, bDay, bDayOption);
         selectDropdownOption(bMonthList, bMonth, bMonthOption);
         selectDropdownOption(bYearList, bYear, bYearOption);
+    }
+
+    public void clickNext() {
+        buttonNext.click();
+    }
+
+    //Assertions code
+
+    @FindBy(css = "input[value='Изпрати код']")
+    WebElement buttonSendCode;
+
+    @FindBy(id = "shortCountryMobilePhoneCode")
+    WebElement phoneCodeCountry;
+
+    public WebElement getButtonSendCode() {
+        return buttonSendCode;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber.getAttribute("value");
+    }
+
+    public String getPhoneCode(){
+       return phoneCodeCountry.getAttribute("value");
     }
 }
