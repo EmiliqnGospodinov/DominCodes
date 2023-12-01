@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MailBG Tests">
+    <test name="MailBG Test">
+        <classes>
+            <class name="mail.creation.tests.MailBgRegistrationTests">
+                <methods>
+                    <exclude name="mailbgRegistrationButtonCheckTextTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

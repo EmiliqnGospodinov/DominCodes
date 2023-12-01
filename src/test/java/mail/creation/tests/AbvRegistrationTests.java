@@ -47,26 +47,11 @@ public class AbvRegistrationTests extends TestsSetup {
         System.out.println(abvRegPage.getPhoneNumber());
         System.out.println(abvRegPage.getPhoneCode());
 
+
+        //Make sure the inputted phone is matching on the new page
         assertEquals(abvRegPage.getPhoneNumber(), phoneNum);
         assertTrue(abvRegPage.getPhoneCode().contains(phoneCode));
         assertTrue(abvRegPage.getButtonSendCode().isDisplayed());
     }
 
-
-    //@Test
-    //public void abvRegButtonClickTest(){
-    //    regSite.openRegSite("https://www.abv.bg");
-    //    regSite.acceptSiteRulesAndGoBackToDefaultContent();
-    //    regSite.clickRegistrationButton();
-    //    regForm.inputEmailName("kod4eta");
-    //    regForm.inputPasswords("Testpass1", "Testpass1");
-    //    regForm.inputAdditionalInfo("888888888","Asdf","Fdsa");
-//
-    //    regForm.chooseSex("2");
-    //    assertEquals("2", regForm.getSex());
-//
-    //    assertEquals("5", regForm.menuClickOption("bDay", "5"), "Wrong day clicked");
-    //    assertEquals("Януари", regForm.menuClickOption("bMonth", "Януари"), "Wrong month clicked");
-    //    assertEquals("1969", regForm.menuClickOption("bYear", "1969"), "Wrong year clicked");
-    //}
 }

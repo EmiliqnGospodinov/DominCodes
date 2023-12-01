@@ -1,25 +1,21 @@
 package core;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BasePage {
 
     protected WebDriver driver;
+    protected WebDriverWait wait;
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
+        wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
     }
 
     /**
@@ -31,16 +27,33 @@ public class BasePage {
     }
 
     /**
+     * Wait for WebElement to be clickable
+     * @param element - waited WebElement
+     */
+    public void waitElementClickable(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    /**
+     * Wait for WebElement to be visible
+     * @param element - waited WebElement
+     */
+    public void waitElementInvisible(WebElement element){
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    /**
     * Accept page privacy policy when its iframe
     * @param iframe - the iframe element
     * @param acceptRulesButton - the accept button element
     */
     public void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
         driver.switchTo().frame(iframe);
+
         //wait for it to load
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(acceptRulesButton));
+        waitElementClickable(acceptRulesButton);
         acceptRulesButton.click();
+
         //switch back to main frame
         driver.switchTo().defaultContent();
     }
@@ -55,8 +68,12 @@ public class BasePage {
     }
 
 
-
-    //NEEDS REFACTORING
+    /**
+     * Choose a dropdown element and the option to be selected
+     * @param list - The list of dropdown elements
+     * @param menu - The dropdown element
+     * @param option - The option to be selected as a String
+     */
     protected static void selectDropdownOption(List<WebElement> list, WebElement menu, String option){
         menu.click();
         WebElement correct = list.stream().

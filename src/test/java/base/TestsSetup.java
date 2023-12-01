@@ -22,6 +22,10 @@ public class TestsSetup{
         driver = new FirefoxDriver();
     }
 
+    /**Take picture of the site if a Test failed and put it in FailedTests folder
+     *
+     * @param result - the result of the test
+     */
     @AfterMethod
     public void recordFailure(ITestResult result){
 
