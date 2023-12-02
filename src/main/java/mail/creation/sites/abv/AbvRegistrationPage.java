@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class AbvRegistrationPage extends BasePage{
-    static String PAGE_URL = "https://passport.abv.bg/app/profiles/registration";
+    private static final String PAGE_URL = "https://passport.abv.bg/app/profiles/registration";
 
     public AbvRegistrationPage(WebDriver driver){
         super(driver);
@@ -17,58 +17,58 @@ public class AbvRegistrationPage extends BasePage{
     }
 
     @FindBy(id= "regformUsername")
-    WebElement mailField;
+    private WebElement mailField;
     //private By mailField; // = By.cssSelector("input[id=\"regformUsername\"]");
 
 
     @FindBy(id = "password")
-    WebElement passField;
+    private WebElement passField;
     //private By passField;// = By.id("password");
 
     @FindBy(id = "password2")
-    WebElement confirmPass;
+    private WebElement confirmPass;
     // = RelativeLocator.with(By.id("password2")).below(By.id("password"));
 
     @FindBy(id= "mobilePhone")
-    WebElement phoneNumber;
+    private WebElement phoneNumber;
     //private By phone;// = By.cssSelector("input[id=\"mobilePhone\"]");
 
     @FindBy(css = ".abv-phone>strong")
-    WebElement phoneCode;
+    private WebElement phoneCode;
 
     @FindBy(css = ".abv-phone>ul>li")
-    List<WebElement> countriesList;
+    private List<WebElement> countriesList;
 
     @FindBy(id = "fname")
     WebElement fName;
     //private By firstName = By.id("fname");
 
     @FindBy(id = "lname")
-    WebElement lName;
+    private WebElement lName;
 
     @FindBy(css = "div[class='abv-radio']>label")
-    List<WebElement> sexes;
+    private List<WebElement> sexes;
 
     @FindBy(id = "bDay")
-    WebElement bDay;
+    private WebElement bDay;
 
     //String text = driver.findElement(By.xpath("//li[.='"+option+"']")).getAttribute("textContent");
     @FindBy(css = "#bDay>ul>li")
-    List<WebElement> bDayList;
+    private List<WebElement> bDayList;
 
     @FindBy(id = "bMonth")
-    WebElement bMonth;
+    private WebElement bMonth;
 
     @FindBy(css = "#bMonth>ul>li")
-    List<WebElement> bMonthList;
+    private List<WebElement> bMonthList;
     @FindBy(id = "bYear")
-    WebElement bYear;
+    private WebElement bYear;
 
     @FindBy(css = "#bYear>ul>li")
-    List<WebElement> bYearList;
+    private List<WebElement> bYearList;
 
     @FindBy(css = "input[value='Напред']")
-    WebElement buttonNext;
+    private WebElement buttonNext;
 
     public void inputMail(String mail){
         mailField.sendKeys(mail);

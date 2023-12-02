@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AbvHomePage extends BasePage {
-    static String PAGE_URL = "https://www.abv.bg/";
+    private static final String PAGE_URL = "https://www.abv.bg/";
 
     public AbvHomePage(WebDriver driver){
         super(driver);
@@ -15,15 +15,15 @@ public class AbvHomePage extends BasePage {
     }
 
     @FindBy(id = "abv-GDPR-frame")
-    WebElement RULES_IFRAME;
+    private WebElement RULES_IFRAME;
     //private final By iframe = By.cssSelector("iframe[id=\"abv-GDPR-frame\"]");
 
     @FindBy(id = "didomi-notice-agree-button")
-    WebElement acceptRulesButton;
+    private WebElement acceptRulesButton;
     //private final By acceptRulesButton = By.id("didomi-notice-agree-button");
 
     @FindBy(xpath = "//strong[contains(text(),\"Регистрирай се!\")]")
-    WebElement registerButton;
+    private WebElement registerButton;
     //private final By registerButton = By.xpath("//strong[contains(text(),'Регистрирай се!')]");
 
     public void openPage(){

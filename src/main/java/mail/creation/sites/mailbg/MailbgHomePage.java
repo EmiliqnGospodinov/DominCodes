@@ -8,17 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 
 public class MailbgHomePage extends BasePage {
 
-    String PAGE_URL = "https://mail.bg/auth/lgn";
+    private static final String PAGE_URL = "https://mail.bg/auth/lgn";
 
     @FindBy(css = "a[class='signup-link']")
-    public WebElement registerButton;
+    private WebElement registerButton;
     public MailbgHomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-
-
 
     public void openPage() {
         driver.get(PAGE_URL);
@@ -29,7 +26,7 @@ public class MailbgHomePage extends BasePage {
     }
 
     @FindBy(id = "login-overlay")
-    WebElement overlay;
+    private WebElement overlay;
 
     public MailbgRegistrationPage clickButtonRegister() {
         //driver.manage().window().maximize();

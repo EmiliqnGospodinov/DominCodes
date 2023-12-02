@@ -1,4 +1,5 @@
 package core;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.WebDriver;
@@ -12,18 +13,16 @@ public class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected JavascriptExecutor jsExecutor;
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        this.jsExecutor = (JavascriptExecutor) driver;
     }
 
-    /**
-     * Open site
-     * @param url - path to the site
-     */
-    public void open(String url){
-        driver.get(url);
+    public void jsClick(WebElement element){
+        jsExecutor.executeScript("arguments[0].click();", element);
     }
 
     /**
@@ -35,8 +34,16 @@ public class BasePage {
     }
 
     /**
+     * Wait for WebElement to be invisible
+     * @param element
+     */
+    public void waitElementVisible(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    /**
      * Wait for WebElement to be visible
-     * @param element - waited WebElement
+     * @param element
      */
     public void waitElementInvisible(WebElement element){
         wait.until(ExpectedConditions.invisibilityOf(element));

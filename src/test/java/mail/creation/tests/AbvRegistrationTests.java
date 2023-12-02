@@ -3,8 +3,6 @@ package mail.creation.tests;
 import base.TestsSetup;
 import mail.creation.sites.abv.AbvHomePage;
 import mail.creation.sites.abv.AbvRegistrationPage;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -32,10 +30,10 @@ public class AbvRegistrationTests extends TestsSetup {
         abvRegPage.openPage();
         //When opening the Registration Page directly there is no Rules pop-up??
 
-        String phoneCode = "Япония";//Fill phone code
-        String phoneNum = "888888888";//Fill wanted Phone  number
+        String phoneCode = "Великобритания";//Fill phone country
+        String phoneNum = "";//Fill wanted Phone  number
 
-        abvRegPage.inputMail("kod4eta");
+        abvRegPage.inputMail("kodd4eda");
         abvRegPage.inputSamePasswords("Test1234");
         abvRegPage.choosePhoneCountry(phoneCode);
         abvRegPage.inputPhone(phoneNum);
@@ -43,10 +41,6 @@ public class AbvRegistrationTests extends TestsSetup {
         abvRegPage.chooseSex("Жена");
         abvRegPage.inputBirthDate("5","Март","1953");
         abvRegPage.clickNext();
-
-        System.out.println(abvRegPage.getPhoneNumber());
-        System.out.println(abvRegPage.getPhoneCode());
-
 
         //Make sure the inputted phone is matching on the new page
         assertEquals(abvRegPage.getPhoneNumber(), phoneNum);
