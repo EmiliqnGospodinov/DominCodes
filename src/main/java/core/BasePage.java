@@ -21,7 +21,7 @@ public class BasePage {
         this.jsExecutor = (JavascriptExecutor) driver;
     }
 
-    public void jsClick(WebElement element){
+    protected void jsClick(WebElement element){
         jsExecutor.executeScript("arguments[0].click();", element);
     }
 
@@ -29,7 +29,7 @@ public class BasePage {
      * Wait for WebElement to be clickable
      * @param element - waited WebElement
      */
-    public void waitElementClickable(WebElement element){
+    protected void waitElementClickable(WebElement element){
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
@@ -37,7 +37,7 @@ public class BasePage {
      * Wait for WebElement to be invisible
      * @param element
      */
-    public void waitElementVisible(WebElement element){
+    protected void waitElementVisible(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -45,7 +45,7 @@ public class BasePage {
      * Wait for WebElement to be visible
      * @param element
      */
-    public void waitElementInvisible(WebElement element){
+    protected void waitElementInvisible(WebElement element){
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
@@ -54,7 +54,7 @@ public class BasePage {
     * @param iframe - the iframe element
     * @param acceptRulesButton - the accept button element
     */
-    public void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
+    protected void iframeAcceptRules(WebElement iframe, WebElement acceptRulesButton){
         driver.switchTo().frame(iframe);
 
         //wait for it to load

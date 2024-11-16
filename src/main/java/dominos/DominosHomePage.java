@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class DominosHomePage extends BasePage {
 
     private static final String PAGE_URL = "https://www.dominos.bg/";
@@ -14,13 +15,23 @@ public class DominosHomePage extends BasePage {
     private WebElement popUpButton;
 
     @FindBy(css = "a.cart-btn:not(#cart-banner)")
-    private WebElement loginButton;
+    private WebElement makeOrderButton;
 
     @FindBy(css = "#popupModal .register")
     private WebElement registerButton;
 
     @FindBy(id = "onesignal-slidedown-container")
     private WebElement popUp;
+
+
+    @FindBy(id = "login-email")
+    private WebElement mailField;
+
+    @FindBy(id = "login-pass")
+    private WebElement passwordField;
+
+    @FindBy(css = ".button.login")
+    private WebElement loginButton;
 
     public DominosHomePage(WebDriver driver) {
         super(driver);
@@ -31,15 +42,15 @@ public class DominosHomePage extends BasePage {
         driver.get(PAGE_URL);
     }
 
-    public void clickLoginButton() {
+    public void clickMakeOrderButton() {
         // Click the login button using JavaScript because WebDriver.click() doesn't work
-        jsClick(loginButton);
+        jsClick(makeOrderButton);
 
         // Wait until the obscuring element becomes either invisible or not present
         waitElementInvisible(popUp);
 
         // Wait until the login button is visible
-        waitElementVisible(loginButton);
+        waitElementVisible(makeOrderButton);
     }
 
     public void clickRegisterButton() {
@@ -49,5 +60,22 @@ public class DominosHomePage extends BasePage {
     public void clearPopUp() {
         waitElementClickable(popUpButton);
         popUpButton.click();
+    }
+
+    public void inputMail(String mail) {
+        mailField.sendKeys(mail);
+    }
+
+    public void inputPassword(String password) {
+        passwordField.sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        driver.manage().window().maximize();
+        loginButton.click();
+    }
+
+    public String getPageUrl() {
+        return driver.getCurrentUrl();
     }
 }
